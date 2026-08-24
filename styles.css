@@ -283,6 +283,19 @@ ul, ol { list-style: none; padding: 0; }
 .service-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent-2); }
 .services-more { margin-top: 2.4rem; color: var(--text-dim); font-size: .92rem; max-width: 64ch; border-top: 1px solid var(--border-soft); padding-top: 1.6rem; }
 
+/* --- Diagnóstico (checklist) --- */
+.diagnostic-grid { display: grid; gap: 1.6rem; }
+.diagnostic-list { padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.diagnostic-list li { display: flex; align-items: flex-start; gap: 1rem; font-size: 1.02rem; color: var(--text); }
+.diagnostic-dash { flex: none; width: 22px; height: 2px; margin-top: .65em; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.diagnostic-result {
+  padding: 2.4rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: .9rem; text-align: center;
+  background: linear-gradient(160deg, rgba(59,130,246,.14), rgba(139,92,246,.1));
+}
+.diagnostic-lead { font-family: var(--display); font-size: 1.5rem; font-weight: 600; }
+.diagnostic-body { color: var(--text-mute); font-size: 1rem; max-width: 40ch; margin-inline: auto; }
+.diagnostic-result .btn { align-self: center; margin-top: .6rem; }
+
 /* --- Process --- */
 .process { display: grid; gap: 1.6rem; counter-reset: step; }
 .process-step { display: flex; gap: 1.3rem; align-items: flex-start; padding-bottom: 1.6rem; border-bottom: 1px solid var(--border-soft); }
@@ -410,6 +423,7 @@ a.contact-row:hover .contact-row-value { color: var(--accent-2); }
   .case-card:nth-child(even) { grid-template-columns: 1.15fr 1fr; }
   .case-card:nth-child(even) .case-media { order: 2; border-right: 0; border-left: 1px solid var(--border-soft); }
   .services { grid-template-columns: repeat(3, 1fr); }
+  .diagnostic-grid { grid-template-columns: 1.2fr 1fr; align-items: stretch; }
   .process { grid-template-columns: repeat(2, 1fr); column-gap: 3rem; }
   .about-grid { grid-template-columns: 240px 1fr; }
   .contact-grid { grid-template-columns: 0.85fr 1.15fr; }
