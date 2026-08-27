@@ -187,25 +187,64 @@
     });
   }
 
-  /* ---------- Contact form (simulated submit, mailto/WhatsApp are the real channels) ---------- */
+  /* ---------- Contact form (real submit via Web3Forms) ---------- */
   function initContactForm() {
     var form = $("[data-contact-form]");
     var success = $("[data-contact-success]");
     if (!form || !success) return;
     var msg = $("[data-contact-success-msg]");
+    var note = $("[data-contact-note]");
+    var noteDefault = note ? note.textContent : "";
+    var ERROR_MSG = "No se pudo enviar el mensaje. Escríbeme directo por WhatsApp o a cri.stian123@hotmail.com.";
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (form.classList.contains("is-sending") || form.classList.contains("is-sent")) return;
       if (!form.reportValidity()) return;
+
+      form.classList.remove("is-error");
       form.classList.add("is-sending");
-      setTimeout(function () {
-        var firstName = (form.elements.name.value || "").trim().split(/\s+/)[0] || "";
-        if (msg) msg.textContent = (firstName ? firstName + ", gracias" : "Gracias") + " por escribir. Para una respuesta más rápida, también puedes escribirme por WhatsApp o correo.";
-        form.classList.remove("is-sending");
-        form.classList.add("is-sent");
-        success.setAttribute("aria-hidden", "false");
-        success.classList.add("is-visible");
-      }, 650);
+      if (note) {
+        note.textContent = noteDefault;
+        note.classList.remove("is-error");
+      }
+
+      var payload = Object.fromEntries(new FormData(form).entries());
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { ok: res.ok && data && data.success, data: data };
+          });
+        })
+        .then(function (result) {
+          form.classList.remove("is-sending");
+          if (result.ok) {
+            var firstName = (form.elements.name.value || "").trim().split(/\s+/)[0] || "";
+            if (msg) msg.textContent = (firstName ? firstName + ", gracias" : "Gracias") + " por escribir. Te respondo en menos de 24 horas.";
+            form.classList.add("is-sent");
+            success.setAttribute("aria-hidden", "false");
+            success.classList.add("is-visible");
+          } else {
+            form.classList.add("is-error");
+            if (note) {
+              note.textContent = ERROR_MSG;
+              note.classList.add("is-error");
+            }
+          }
+        })
+        .catch(function () {
+          form.classList.remove("is-sending");
+          form.classList.add("is-error");
+          if (note) {
+            note.textContent = ERROR_MSG;
+            note.classList.add("is-error");
+          }
+        });
     });
   }
 

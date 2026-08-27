@@ -20,6 +20,7 @@
   --text-mute: #9aa5c7;
   --text-dim: #6c7796;
   --cream: #eef2ff;
+  --danger: #f87171;
 
   --accent: #3b82f6;
   --accent-2: #22d3ee;
@@ -365,6 +366,8 @@ a.contact-row:hover .contact-row-value { color: var(--accent-2); }
 }
 .cta-submit { width: 100%; position: relative; margin-top: .4rem; }
 .field-note { margin-top: .9rem; font-size: .8rem; color: var(--text-dim); }
+.field-note.is-error { color: var(--danger); }
+.hp-field { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
 .cta-form-spinner, .cta-form-check { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; pointer-events: none; }
 .contact-form.is-sending .cta-form-label { opacity: 0; }
 .contact-form.is-sending .cta-form-spinner { opacity: 1; }

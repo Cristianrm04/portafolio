@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
-<link rel="stylesheet" href="styles.css?v=20260824">
+<link rel="stylesheet" href="styles.css?v=20260827">
 
 <!-- Analítica privada (GoatCounter) — sin cookies, sin datos personales -->
 <script data-goatcounter="https://cristian04rm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -414,6 +414,10 @@
         </div>
 
         <form class="contact-form card" data-contact-form novalidate>
+          <input type="hidden" name="access_key" value="7ce8f4b8-0de0-4e6f-9fc9-20c40aea063c">
+          <input type="hidden" name="subject" value="Nuevo mensaje desde tu portafolio">
+          <input type="hidden" name="from_name" value="Portafolio de Cristian">
+          <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="field">
             <input type="text" id="cf-name" name="name" required placeholder=" ">
             <label for="cf-name">Nombre</label>
@@ -431,7 +435,7 @@
             <span class="cta-form-spinner" aria-hidden="true"></span>
             <svg class="cta-form-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6" pathlength="1"></path></svg>
           </button>
-          <p class="field-note">Este formulario no envía datos automáticamente todavía: escríbeme por WhatsApp o email y te respondo directo.</p>
+          <p class="field-note" data-contact-note>También puedes escribirme directo por WhatsApp o email.</p>
           <div class="cta-success" data-contact-success aria-hidden="true">
             <h3>¡Gracias!</h3>
             <p data-contact-success-msg></p>
@@ -461,6 +465,6 @@
 </footer>
 
 <script defer src="lib/manifest.js"></script>
-<script defer src="main.js?v=20260824"></script>
+<script defer src="main.js?v=20260827"></script>
 </body>
 </html>
